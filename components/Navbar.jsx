@@ -1,7 +1,6 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,65 +12,59 @@ export default function Navbar() {
         {/* Logo */}
         <div className="flex items-center space-x-3">
           <Link href="/">
-            <Image 
+            <img 
               src="/logo.jpg" 
               alt="Uptotechsyl Logo" 
-              width={120} 
-              height={48} 
-              className="h-12 w-auto hover:scale-105 transition-transform duration-300" 
+              className="h-12 w-auto object-contain hover:scale-105 transition-transform duration-300 rounded-md" 
             />
           </Link>
         </div>
 
-        {/* Desktop Menu */}
-        <div className="hidden lg:flex space-x-8 font-medium items-center">
-          <Link href="/" className="text-white hover:text-[#eab308] transition-colors duration-300">Home</Link>
-          <Link href="/service" className="text-white hover:text-[#eab308] transition-colors duration-300">Service</Link>
-          <Link href="/about" className="text-white hover:text-[#eab308] transition-colors duration-300">About</Link>
-          <Link href="/portfolio" className="text-white hover:text-[#eab308] transition-colors duration-300">Portfolio</Link>
-          <Link href="/contact" className="text-white hover:text-[#eab308] transition-colors duration-300">Contact</Link>
+        {/* Desktop Links with Correct Page Routing */}
+        <div className="hidden lg:flex space-x-8 font-medium">
+          <Link href="/" className="text-white hover:text-[#D4AF37] transition-colors duration-300">Home</Link>
+          <Link href="/about" className="text-white hover:text-[#D4AF37] transition-colors duration-300">About</Link>
+          <Link href="/services" className="text-white hover:text-[#D4AF37] transition-colors duration-300">Services</Link>
+          <Link href="/portfolio" className="text-white hover:text-[#D4AF37] transition-colors duration-300">Portfolio</Link>
+          <Link href="/contact" className="text-white hover:text-[#D4AF37] transition-colors duration-300">Contact</Link>
         </div>
 
-        {/* Search & Contact Us Button */}
-        <div className="hidden lg:flex items-center space-x-6">
-          <button className="text-white text-xl hover:text-[#eab308] transition-all duration-300">
-            <i className="fa-solid fa-magnifying-glass"></i>
-          </button>
-          <Link 
-            href="/contact" 
-            className="btn-golden text-black px-8 py-3 rounded-full font-bold shadow-lg uppercase text-sm tracking-wider hover:opacity-90 transition-all"
+        {/* Right Side: Search Button & Contact Us Button */}
+        <div className="hidden lg:flex items-center space-x-5">
+          <button 
+            aria-label="Search" 
+            className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:text-black hover:bg-[#D4AF37] hover:border-[#D4AF37] transition-all duration-300 focus:outline-none"
           >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </button>
+
+          <Link href="/contact" className="btn-golden text-black px-8 py-3 rounded-full font-bold shadow-lg uppercase text-sm tracking-wider">
             Contact Us
           </Link>
         </div>
 
         {/* Mobile Menu Button */}
         <button 
-          id="menu-btn" 
           onClick={() => setIsOpen(!isOpen)} 
-          className="lg:hidden text-white text-2xl focus:outline-none"
+          className="lg:hidden text-white text-2xl focus:outline-none hover:text-[#D4AF37] transition-colors"
+          aria-label="Toggle Menu"
         >
           <i className={`fa-solid ${isOpen ? 'fa-xmark' : 'fa-bars-staggered'} transition-all duration-300`}></i>
         </button>
       </nav>
 
-      {/* Mobile Dropdown Menu */}
+      {/* Mobile Menu Dropdown */}
       {isOpen && (
-        <div 
-          id="mobile-menu" 
-          className="absolute top-full left-0 w-full bg-black/95 backdrop-blur-xl text-white flex flex-col p-8 space-y-6 shadow-2xl border-t border-white/10 lg:hidden transition-all duration-300"
-        >
-          <Link href="/" onClick={() => setIsOpen(false)} className="text-xl font-semibold hover:text-[#eab308] transition-all">Home</Link>
-          <Link href="/service" onClick={() => setIsOpen(false)} className="text-xl font-semibold hover:text-[#eab308] transition-all">Service</Link>
-          <Link href="/about" onClick={() => setIsOpen(false)} className="text-xl font-semibold hover:text-[#eab308] transition-all">About</Link>
-          <Link href="/portfolio" onClick={() => setIsOpen(false)} className="text-xl font-semibold hover:text-[#eab308] transition-all">Portfolio</Link>
-          <Link href="/contact" onClick={() => setIsOpen(false)} className="text-xl font-semibold hover:text-[#eab308] transition-all border-b border-white/10 pb-4">Contact</Link>
+        <div className="absolute top-full left-0 w-full bg-black/95 backdrop-blur-xl text-white flex flex-col p-8 space-y-6 shadow-2xl border-t border-white/10 lg:hidden transition-all duration-300">
+          <Link href="/" onClick={() => setIsOpen(false)} className="text-xl font-semibold hover:text-[#D4AF37] transition-all">Home</Link>
+          <Link href="/about" onClick={() => setIsOpen(false)} className="text-xl font-semibold hover:text-[#D4AF37] transition-all">About</Link>
+          <Link href="/services" onClick={() => setIsOpen(false)} className="text-xl font-semibold hover:text-[#D4AF37] transition-all">Services</Link>
+          <Link href="/portfolio" onClick={() => setIsOpen(false)} className="text-xl font-semibold hover:text-[#D4AF37] transition-all">Portfolio</Link>
+          <Link href="/contact" onClick={() => setIsOpen(false)} className="text-xl font-semibold hover:text-[#D4AF37] transition-all border-b border-white/10 pb-4">Contact</Link>
           
-          <Link 
-            href="/contact" 
-            onClick={() => setIsOpen(false)}
-            className="btn-golden text-black text-center py-4 rounded-xl font-bold text-lg uppercase shadow-md"
-          >
+          <Link href="/contact" onClick={() => setIsOpen(false)} className="btn-golden text-black text-center py-4 rounded-xl font-bold text-lg uppercase">
             Contact Us
           </Link>
         </div>

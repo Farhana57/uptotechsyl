@@ -1,26 +1,363 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --primary: #D4AF37;
+  --dark: #050505;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #050505;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom Primary / Gold Colors */
+.text-primary {
+  color: #D4AF37;
+}
+
+.bg-primary {
+  background-color: #D4AF37;
+}
+
+.border-primary {
+  border-color: #D4AF37;
+}
+
+.gold-text {
+  color: #D4AF37;
+}
+
+/* Golden Button Style */
+.btn-golden {
+  background-color: #D4AF37;
+  color: #000000;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn-golden:hover {
+  background-color: #ffffff;
+  color: #000000;
+  transform: scale(1.05);
+}
+
+/* Glow & Hover Effects */
+.glow-text {
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+}
+
+.gold-border-hover:hover {
+  border-color: #D4AF37 !important;
+}
+
+/* Feature Row & About List Item Hover Effect */
+.feature-row:hover i,
+.feature-row:hover span {
+  color: #050505 !important;
+}
+
+/* About Section Custom Gold List Items Style */
+.about-list-item {
+  background: rgba(24, 24, 27, 0.5);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  transition: all 0.4s ease;
+}
+
+.about-list-item:hover {
+  background-color: #D4AF37 !important;
+  border-color: #D4AF37 !important;
+  transform: translateX(6px);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}
+
+.about-list-item:hover i,
+.about-list-item:hover span {
+  color: #050505 !important;
+}
+
+/* Service Card Custom Styles & Hover Effects */
+.service-card {
+  background-color: #121212 !important;
+  border: 1px solid rgba(212, 175, 55, 0.2) !important;
+  transition: all 0.4s ease;
+}
+
+.service-card:hover {
+  background-color: #D4AF37 !important;
+  border-color: #D4AF37 !important;
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+}
+
+.service-card:hover h3,
+.service-card:hover p {
+  color: #050505 !important;
+}
+
+/* হোভার করলে আইকন বক্স কালো হবে এবং আইকনটি স্পষ্ট গোল্ডেন দেখাবে */
+.service-card:hover .service-icon-box {
+  background-color: white !important;
+}
+
+.service-card:hover .service-icon-box i {
+  color: black !important;
+}
+/* Portfolio Work Card Styles */
+.my-work-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  height: 380px;
+  border: 1px solid rgba(255, 255, 255, .1);
+  cursor: pointer;
+  background: #111;
+}
+
+.my-work-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+
+.my-work-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, .85);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all .4s ease;
+  backdrop-filter: blur(4px);
+  z-index: 10;
+}
+
+.my-work-card:hover img {
+  transform: scale(1.1);
+}
+
+.my-work-card:hover .my-work-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Floating Action Buttons Custom Styles */
+.floating-btn-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.float-whatsapp-btn {
+  background-color: #25D366;
+  color: #ffffff;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.float-whatsapp-btn:hover {
+  background-color: #20ba5a;
+  transform: scale(1.1);
+}
+
+.float-scroll-btn {
+  background-color: #D4AF37;
+  color: #000000;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.float-scroll-btn:hover {
+  background-color: #ffffff;
+  color: #000000;
+  transform: scale(1.1);
+}
+/* Team Card Custom Styles & Slide/Hover Animation */
+.team-card {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: rgba(18, 18, 18, 0.6) !important;
+  border: 1px solid rgba(212, 175, 55, 0.2) !important;
+}
+
+.team-card:hover {
+  background-color: #D4AF37 !important;
+  border-color: #D4AF37 !important;
+  transform: translateY(-12px);
+  box-shadow: 0 15px 35px rgba(212, 175, 55, 0.35);
+}
+
+.team-card:hover h3,
+.team-card:hover p {
+  color: #050505 !important;
+}
+
+.team-card:hover .team-img-border {
+  border-color: #050505 !important;
+}
+/* ==========================================
+   My Work / Portfolio Card Custom Styles
+========================================== */
+.my-work-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  height: 380px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  cursor: pointer;
+  background: #111;
+  transition: all 0.4s ease;
+}
+
+.my-work-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.my-work-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  opacity: 0;
+  transform: translateY(25px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(6px);
+  z-index: 10;
+}
+
+.my-work-card:hover {
+  border-color: #D4AF37;
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.25);
+}
+
+.my-work-card:hover img {
+  transform: scale(1.12);
+}
+
+.my-work-card:hover .my-work-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* ==========================================
+   Process Section Card & Hover Effects
+========================================== */
+#process .group {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#process .group:hover {
+  background-color: #D4AF37 !important;
+  border-color: #D4AF37 !important;
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
+}
+
+/* হোভার করলে টাইটেল ও প্যারাগ্রাফ কালো রঙ হবে */
+#process .group:hover h3,
+#process .group:hover p {
+  color: #050505 !important;
+}
+
+/* হোভার করলে নাম্বারের সার্কেলটি কালো এবং ভেতরের টেক্সট গোল্ডেন হবে */
+#process .group:hover .w-20 {
+  background-color: #050505 !important;
+  color: #D4AF37 !important;
+  border-color: #050505 !important;
+}
+
+/* হোভার করলে ছোট আইকনের ব্যাকগ্রাউন্ড ও আইকনের রঙ পরিবর্তিত হবে */
+#process .group:hover .absolute.w-10 {
+  background-color: #050505 !important;
+  border-color: #050505 !important;
+}
+
+#process .group:hover .absolute.w-10 i {
+  color: #D4AF37 !important;
+}
+/* ==========================================
+   Team Card Custom Styles & Hover Effects
+========================================== */
+.team-card {
+  background-color: rgba(18, 18, 18, 0.6) !important;
+  border: 1px solid rgba(212, 175, 55, 0.2) !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 24px;
+}
+
+.team-card:hover {
+  background-color: #D4AF37 !important;
+  border-color: #D4AF37 !important;
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(212, 175, 55, 0.35);
+}
+
+.team-card:hover h3,
+.team-card:hover p {
+  color: #050505 !important;
+}
+
+.team-card:hover .team-img-border {
+  border-color: #050505 !important;
+}
+/* Custom Hover Effects for About Page Cards and Feature Items */
+.custom-hover-card {
+    transition: all 0.4s ease-in-out;
+}
+.custom-hover-card:hover {
+    background-color: #D4AF37 !important; /* গোল্ডেন কালার */
+    border-color: #D4AF37 !important;
+}
+.custom-hover-card:hover h3,
+.custom-hover-card:hover p,
+.custom-hover-card:hover span,
+.custom-hover-card:hover i {
+    color: #000000 !important; /* কালো টেক্সট ও আইকন */
+}
+/* Service Cards Hover Fix */
+.service-hover-card {
+    transition: all 0.4s ease-in-out;
+}
+.service-hover-card:hover {
+    background-color: #D4AF37 !important; /* গোল্ডেন কালার */
+    border-color: #D4AF37 !important;
+}
+.service-hover-card:hover h3,
+.service-hover-card:hover p,
+.service-hover-card:hover li,
+.service-hover-card:hover span,
+.service-hover-card:hover div {
+    color: #000000 !important; /* হোভার করলে সব টেক্সট কালো হয়ে যাবে */
 }
