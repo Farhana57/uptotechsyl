@@ -1,12 +1,11 @@
 'use client';
-import { useEffect } from 'interface' // or just standard react useEffect
-import React from 'react';
+import React, { useEffect } from 'react';
 
 export default function CursorTrail() {
-  React.useEffect(() => {
+  useEffect(() => {
     const numDots = 7;
     const dots: any[] = [];
-    let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     
     for (let i = 0; i < numDots; i++) {
       const dot = document.createElement('div');
