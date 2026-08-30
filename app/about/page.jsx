@@ -32,7 +32,7 @@ export default function AboutPage() {
         },
         {
             name: "Hasan Md. Eyahiya",
-            role: "UI/UX Designer",
+            role: "UI/UX & Graphics Designer",
             imgSrc: "/hasan.jpeg",
             socials: [
                 { icon: "bxl-behance", href: "#" },
