@@ -1,31 +1,39 @@
 'use client';
 import { useState } from 'react';
-import emailjs from '@emailjs/browser';
 
 export default function ContactSection() {
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    // EmailJS সার্ভিস আইডি, টেমপ্লেট আইডি এবং পাবলিক কি এখানে বসাতে হবে
-    emailjs.sendForm(
-      'YOUR_SERVICE_ID', 
-      'YOUR_TEMPLATE_ID', 
-      e.target, 
-      'YOUR_PUBLIC_KEY'
-    )
-    .then((result) => {
+    const formData = new FormData(e.target);
+    // web3forms.com থেকে ফ্রি অ্যাক্সেস কি নিয়ে নিচের কোটেশনের ভেতরে বসিয়ে দেবেন
+    formData.append("access_key", "42c4097c-8919-44c7-a06d-ee438fef4e30");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
         setLoading(false);
         setSuccessMessage('Message sent successfully! We will contact you soon.');
         e.target.reset();
         setTimeout(() => setSuccessMessage(''), 5000);
-    }, (error) => {
+      } else {
         setLoading(false);
         setSuccessMessage('Failed to send message. Please try again later.');
-    });
+      }
+    } catch (error) {
+      setLoading(false);
+      setSuccessMessage('Something went wrong. Please try again.');
+    }
   };
 
   return (
