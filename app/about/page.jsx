@@ -2,6 +2,54 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default function AboutPage() {
+    const teamMembers = [
+        {
+            name: "Farhana Khatun",
+            role: "COO & MERN Dev",
+            imgSrc: "/my img.jpeg",
+            socials: [
+                { icon: "bxl-linkedin-square", href: "#" },
+                { icon: "bxl-github", href: "#" },
+            ],
+        },
+        {
+            name: "Shoumo S. Araf",
+            role: "Project Manager",
+            imgSrc: "/araf.jpeg",
+            socials: [
+                { icon: "bxl-linkedin-square", href: "#" },
+                { icon: "bxl-github", href: "#" },
+            ],
+        },
+        {
+            name: "Ripa",
+            role: "Laravel Expert",
+            imgSrc: "/ripa.jpeg",
+            socials: [
+                { icon: "bxl-linkedin-square", href: "#" },
+                { icon: "bxl-github", href: "#" },
+            ],
+        },
+        {
+            name: "Hasan Md. Eyahiya",
+            role: "UI/UX Designer",
+            imgSrc: "/hasan.jpeg",
+            socials: [
+                { icon: "bxl-behance", href: "#" },
+                { icon: "bxl-dribbble", href: "#" },
+            ],
+        },
+        {
+            name: "Srity",
+            role: "SEO Specialist",
+            imgSrc: "/sritypic.jpeg",
+            socials: [
+                { icon: "bxl-facebook-square", href: "#" },
+                { icon: "bxl-instagram-alt", href: "#" },
+            ],
+        },
+    ];
+
     return (
         <main className="bg-black text-white min-h-screen">
             {/* Hero Section */}
@@ -135,6 +183,36 @@ export default function AboutPage() {
                     </div>
                 </div>
             </section>
+
+            {/* Team Section */}
+            <section id="team-section" className="py-24 bg-black">
+                <div className="container mx-auto px-6">
+                    <div className="text-center mb-16">
+                        <h4 className="text-primary font-bold uppercase tracking-widest mb-2 italic">Meet Our Team</h4>
+                        <h2 className="text-4xl md:text-4xl font-black uppercase tracking-tight text-white">The professionals behind our <span className="text-primary">success</span></h2>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+                        {teamMembers.map((member, index) => (
+                            <div key={index} className="team-card bg-white/5 border border-white/10 p-8 rounded-3xl text-center group hover:bg-primary transition-all duration-500 shadow-xl cursor-default">
+                                <div className="relative w-32 h-32 mx-auto mb-6 overflow-hidden rounded-2xl border border-white/10 group-hover:border-black/30 shadow-md">
+                                    <img src={member.imgSrc} alt={member.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all" />
+                                </div>
+                                <h3 className="text-xl font-bold text-white mb-1 group-hover:text-black transition-colors">{member.name}</h3>
+                                <p className="text-primary text-xs font-bold uppercase mb-4 group-hover:text-black tracking-tighter transition-colors">{member.role}</p>
+                                <div className="flex justify-center space-x-4 text-gray-400 group-hover:text-black text-lg border-t border-white/10 group-hover:border-black/20 pt-4 transition-colors">
+                                    {member.socials.map((social, sIdx) => (
+                                        <a key={sIdx} href={social.href} className="hover:opacity-75">
+                                            <i className={`bx ${social.icon}`}></i>
+                                        </a>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+            
         </main>
     );
 }
