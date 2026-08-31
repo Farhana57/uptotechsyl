@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-
+import Link from 'next/link';
 export default function Home() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [loading, setLoading] = useState(false);
@@ -202,11 +202,11 @@ export default function Home() {
         </div>
         
         <div className="text-center mt-12">
-          <a href="/service" className="inline-flex items-center px-8 py-3 rounded-full bg-primary text-black font-bold hover:bg-white transition-all duration-300">
-            View All Service
-            <i className='bx bx-right-arrow-alt ml-2 text-xl'></i>
-          </a>
-        </div>
+        <Link href="/services" className="inline-flex items-center px-8 py-3 rounded-full bg-primary text-black font-bold hover:bg-white transition-all duration-300">
+        View All Service
+        <i className='bx bx-right-arrow-alt ml-2 text-xl'></i>
+      </Link>
+         </div>
       </section>
 
       {/* 4. About Section */}
